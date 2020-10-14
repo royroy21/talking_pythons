@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  rabbit:
+    image: rabbitmq:3.8.5-management
+    restart: unless-stopped
+    hostname: rabbit
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_ERLANG_COOKIE: "SECRET_COOKIE"
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+    ports:
+      - "15673:15672"
+      - "9672:5672"
+
+volumes:
+  rabbit-data:
